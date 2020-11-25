@@ -44,4 +44,7 @@ export default {
   exitFullScreen:"退出全屏",
   kefuChat:"客服聊天",
   close:"关闭",
+
+  sort:"Sort",
+  contactUs: 'Contact us'
 }

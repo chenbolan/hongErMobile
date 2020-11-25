@@ -1,0 +1,133 @@
+.slider-bar {
+  & {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 100;
+  }
+  .slider-bar-con {
+    & {
+      position: fixed;
+      background-color: #fff;
+      width: 4rem;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .menu_top {
+      padding: .49rem .87rem 0 .64rem;
+      box-sizing: border-box;
+    }
+    .user_con {
+      & {
+        align-items: flex-end;
+        margin-bottom: .66rem;
+        position: relative;
+      }
+      .user_icon {
+        width: .77rem;
+        height: .77rem;
+        margin-right: .27rem;
+      }
+      .user {
+        font-size: 24px;
+        color: #545759;
+        line-height: 24px;
+        word-break: break-all;
+      }
+    }
+    .menu-list-con {
+      li {
+        & {
+          align-items: center;
+          margin-bottom: .28rem;
+        }
+        .menu_cion {
+          width: .45rem;
+          height: .45rem;
+          margin-right: .3rem;
+          background: url('../asset/menu1.png') no-repeat center top;
+          background-size: contain;
+        }
+        .menu_cion2 {
+          background-image: url('../asset/menu2.png');
+        }
+        .menu_cion3 {
+          background-image: url('../asset/menu3.png');
+        }
+        .menu_text {
+          font-size: 18px;
+          color: #545759;
+          word-break: break-all;
+          text-align: left;
+          a{
+            color: #545759;
+          }
+        }
+      }
+    }
+
+    .lanuage_con {
+      & {
+        position: absolute;
+        bottom: 1.34rem;
+        left: 0;
+        box-sizing: border-box;
+        padding: .25rem;
+        text-align: left;
+        width: 100%;
+      }
+      li {
+        & {
+          display: inline-block;
+          width: .8rem;
+          margin: 0 .035rem .1rem .035rem;
+        }
+        .lanuage {
+          width: .8rem;
+          height: .8rem;
+          box-sizing: border-box;
+          text-align: center;
+          line-height: .78rem;
+          font-size: 20px;
+          color: #A9ABAE;
+          border: 1px solid #adadb1;
+          border-radius: 5px;
+        }
+        span {
+          display: block;
+          opacity: 0;
+          margin: 0 auto;
+          width: 0;
+          height: 0;
+          border-left: .1rem solid transparent;
+          border-right: .1rem solid transparent;
+          border-top: .1rem solid #545759;
+          margin-bottom: .2rem;
+        }
+        &.active {
+          .lanuage {
+            font-weight: bold;
+            color: #545759;
+          }
+          span {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .log_out {
+      text-align: center;
+      width: 60%;
+      font-size: 15px;
+      line-height: 30px;
+      letter-spacing: 2px;
+      border: 1px solid #adadb1;
+      border-radius: 5px;
+      margin: .4rem auto 0;
+    }
+  }
+}

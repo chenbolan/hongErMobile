@@ -42,4 +42,7 @@ export default {
   exitFullScreen:"exit fullScreen",
   kefuChat:"Customer Service",
   close:"Minimize",
+
+  sort:"Sort",
+  contactUs: 'Contact us'
 }

@@ -1,0 +1,19 @@
+.profile_con {
+  &{
+    padding: .4rem .3rem;
+    background-color: #f7fafe;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  h2 {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: bold;
+    margin-bottom: .3rem;
+  }
+  li, span, p {
+    font-size: 15px;
+    line-height: 16px;
+    text-align: left;
+  }
+}
