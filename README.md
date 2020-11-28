@@ -1,9 +1,9 @@
 ## 在本地运行的时候
-public\chat\front\im\js\initRequestUrl.js 文件下 window.requestUrl = 'https://demo.fairsroom.com'
+public\chat\front\im\js\initRequestUrl.js 文件下 window.requestUrl = 'https://demo.fairsroom.com'<br />
 src\page\homePage\index.tsx 文件下 dataStr.levels[0].map = 'https://demo.fairsroom.com/download/20200812153814/svg/G-plas.svg'
 ## 打包的时候
-public\chat\front\im\js\initRequestUrl.js 文件下 window.requestUrl = ''
-src\page\homePage\index.tsx 文件下initMap function中 dataStr.levels[0].map = 'https://demo.fairsroom.com/download/20200812153814/svg/G-plas.svg'注释掉
+public\chat\front\im\js\initRequestUrl.js 文件下 window.requestUrl = ''<br />
+src\page\homePage\index.tsx 文件下initMap function中 dataStr.levels[0].map = 'https://demo.fairsroom.com/download/20200812153814/svg/G-plas.svg' 注释掉
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
