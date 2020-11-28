@@ -1,3 +1,10 @@
+## 在本地运行的时候
+public\chat\front\im\js\initRequestUrl.js 文件下 window.requestUrl = 'https://demo.fairsroom.com'
+src\page\homePage\index.tsx 文件下 dataStr.levels[0].map = 'https://demo.fairsroom.com/download/20200812153814/svg/G-plas.svg'
+## 打包的时候
+public\chat\front\im\js\initRequestUrl.js 文件下 window.requestUrl = ''
+src\page\homePage\index.tsx 文件下initMap function中 dataStr.levels[0].map = 'https://demo.fairsroom.com/download/20200812153814/svg/G-plas.svg'注释掉
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -42,4 +49,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-"# hongErMobile" 
+"# hongErMobile"

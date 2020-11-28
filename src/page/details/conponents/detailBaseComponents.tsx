@@ -175,9 +175,10 @@ export class DetailBase extends React.Component<Props, State> {
       this.getClaasify()
       this.saveCustomerLog();
       this.linkCustomService();
-      var host = "https://" + window.location.host;
+      // var host = "https://" + window.location.host;
+      const origin = window.location.origin;
       // const href  = host + "/vm/pages/front/im/mainNew.html?exhibitorId=" +  exhibitorId;
-      const href  = `${host}/chat/front/im/mainNew.html?exhibitorId=${exhibitorId}`;
+      const href  = `${origin}/chat/front/im/mainNew.html?exhibitorId=${exhibitorId}`;
       this.setState({
         chatUrl: href,
       })
