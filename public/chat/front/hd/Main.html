@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云信测试</title>
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<script src="SDK/js/NIM_Web_NIM_v6.10.0.js"></script>
+<script src="SDK/js/NIM_Web_WebRTC_v6.10.0.js"></script>
+
+
+<script src="js/md5.js"></script>
+<script src="js/meetingutil.js"></script>
+<script src="js/meeting.js"></script>
+<!--<script src="js/main.js"></script>-->
+
+<div class="logoutBtn">
+    <button type="button" class="btn-logout" id="logoutBtn">登出</button>
+</div>
+
+<div class="mainwrapper">
+    <div class="box">
+        <div id="LocalContainer1">
+            <div id="Localcontainer_0_name"></div>
+        </div>
+        <div id="Remotecontainer1">
+            <div id="Remotecontainer_wrap_1">
+                <div id="Remotecontainer_1">
+                    <div id="Remotecontainer_1_name"></div>
+                </div>
+                <div id="Remotecontainer_2">
+                    <div id="Remotecontainer_2_name"></div>
+                </div>
+            </div>
+            <div id="Remotecontainer_wrap_2">
+                <div id="Remotecontainer_3">
+                    <div id="Remotecontainer_3_name"></div>
+                </div>
+                <div id="Remotecontainer_4">
+                    <div id="Remotecontainer_4_name"></div>
+                </div>
+            </div>
+    </div>
+    <div class="toolbar">
+        <input name="oppaccid" type="text" id="oppaccid" value="请输入房间的RoomName" size="40"/>
+        <button class="btn" id="startCallBtn">加入房间</button>
+        <button class="btn btn-red" id="hangupBtn">离开房间</button>
+    </div>
+</div>
+</div>
+</body>
+
+</html>

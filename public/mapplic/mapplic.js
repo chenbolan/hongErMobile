@@ -12,7 +12,7 @@
 		var messagesJsonObj = eval('(' + messages + ')');
 		productDetail = messagesJsonObj["productDetail"]
 	 }
-	 
+
 	var Mapplic = function(element) {
 
 		var self = this;
@@ -799,9 +799,17 @@
 						}
 				}
 
-				
 
-				
+				this.toggleFolder = function(index){
+					const isActiveFolder = $(`.mapplic-list-category-folder-${index}`).attr('class').indexOf('mapplic-list-category-folder-active') > -1;
+					if(!isActiveFolder){
+						$(".mapplic-list-category-folder").removeClass('mapplic-list-category-folder-active');
+						$(`.mapplic-list-category-folder-${index}`).addClass('mapplic-list-category-folder-active');
+					}else{
+						$(".mapplic-list-category-folder").removeClass('mapplic-list-category-folder-active');
+					}
+				}
+
 				/*****二级分类结束******/
 				var expandable = $('<li></li>').addClass('mapplic-list-expandable'),
 					expandablelist = $('<ol></ol>').appendTo(expandable);
@@ -812,31 +820,33 @@
 					var folderCount = 0;
 					var currentFolderIndex = 0;
 					var currentFolder = folders[0];
+					const _this =this;
 					$.each(categories, function(index, category) {
 						// var categoryFolders = $('<li></li>').addClass('mapplic-list-folders')
 						// var categoryFoldersList = $('<ol></ol>').appendTo(categoryFolders);
 						// this.list.append(categoryFolders);
 						// for(var i=0; i< folders.length;i++){
-						
+
 							if(currentFolder == category.folder  && folderCount == 0){
 								var tmpFolder = currentFolder;
 								// var index = "folderIndex" + i ;
-								var item2 = $('<li></li>').addClass('mapplic-list-category-folder').attr('data-category-folder', tmpFolder);
+								var item2 = $('<li></li>').addClass(`mapplic-list-category-folder mapplic-list-category-folder-${index}`).attr('data-category-folder', tmpFolder);
 											var link2 = $('<a></a>').attr('href', '#').prependTo(item2);
 											var title2 = $('<h4 style="margin:0 auto"></h4').text(tmpFolder).appendTo(link2);
-								
+
 								// item2.appendTo(categoryFoldersList)
-								link2.on('click', {tfolder:tmpFolder}, function(e) {
+								link2.on('click', {tfolder:tmpFolder, index: index}, function(e) {
 												e.preventDefault();
 
 												$(".folder-" + e.data.tfolder).toggle();
+												_this.toggleFolder(index);
 												//非此类的都关闭
 												for(var i=0; i< folders.length;i++){
 													if(folders[i] != e.data.tfolder){
 														$(".folder-" + folders[i]).css('display','none');
 													}
 												}
-												
+
 											});
 								item2.appendTo(expandablelist);
 							// }
@@ -845,29 +855,30 @@
 								currentFolder = category.folder;
 								var tmpFolder = currentFolder;
 								// var index = "folderIndex" + i ;
-								var item2 = $('<li></li>').addClass('mapplic-list-category-folder').attr('data-category-folder', tmpFolder);
+								var item2 = $('<li></li>').addClass(`mapplic-list-category-folder mapplic-list-category-folder-${index}`).attr('data-category-folder', tmpFolder);
 											var link2 = $('<a></a>').attr('href', '#').prependTo(item2);
 											var title2 = $('<h4 style="margin:0 auto"></h4').text(tmpFolder).appendTo(link2);
-								
+
 								// item2.appendTo(categoryFoldersList)
-								link2.on('click', {tfolder:tmpFolder}, function(e) {
+								link2.on('click', {tfolder:tmpFolder, index: index}, function(e) {
 												e.preventDefault();
 
 												$(".folder-" + e.data.tfolder).toggle();
+												_this.toggleFolder(index);
 												//非此类的都关闭
 												for(var i=0; i< folders.length;i++){
 													if(folders[i] != e.data.tfolder){
 														$(".folder-" + folders[i]).css('display','none');
 													}
 												}
-												
+
 											});
 								item2.appendTo(expandablelist);
 							}
 
 							folderCount++;
 
-							
+
 
 
 						category.nr = 0;
@@ -886,9 +897,9 @@
 							var title = $('<h4></h4').text(category.title).appendTo(link);
 							if (!category.about) title.addClass('mapplic-margin');
 							category.count = $('<span></span>').text('(0)').addClass('mapplic-list-count').appendTo(title);
-							
+
 							if (category.about) $('<span></span>').addClass('mapplic-about').html(category.about).appendTo(link);
-							
+
 							var toggle = self.legend.newToggle(category)
 							if (toggle) toggle.appendTo(item);
 
@@ -903,13 +914,13 @@
 							});
 
 							category.list = item;
-							
+
 							item.appendTo(expandablelist);
 						}
 					});
 				}
 
-			
+
 			}
 
 			this.countCategory = function() {
@@ -1689,7 +1700,8 @@
 					if (self.el.hasClass('mapplic-fullscreen')) self.container.el.height($(window).height());
 					else {
 						var height = Math.min(Math.max(self.container.el.width() * self.contentHeight / self.contentWidth, $(window).height() * 2/3), $(window).height() - 66);
-						self.container.el.height(height);
+						// self.container.el.height(height);
+						self.container.el.height('5.25rem');
 					}
 				}
 				else {
@@ -2181,13 +2193,13 @@
 				location.el.css({'top': top + '%', 'left': left + '%'});
 			}
 		}
-		self.getCookie = function(name) { 
+		self.getCookie = function(name) {
 			var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
 			if(arr=document.cookie.match(reg)){
-				return unescape(arr[2]); 
+				return unescape(arr[2]);
 			}else{
 				return null;
-			}       
+			}
 		}
 
 	};

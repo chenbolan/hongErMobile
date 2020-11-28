@@ -1,11 +1,14 @@
 @import '~antd/dist/antd.css';
 body,html, #root{
+  /* height: calc(100% - 10px); */
   height: 100%;
+  width: 100%;
   background: #fff;
   min-width: 250px;
+  box-sizing: border-box;
 }
 
-html, body {height:100%;overflow:auto;margin: 0;}
+/* html, body {height:100%;overflow:auto;margin: 0;} */
 html{overflow-y:scroll;}
 .App {
   text-align: center;
@@ -143,37 +146,4 @@ ul {
 }
 .ant-layout-content {
   overflow: auto;
-}
-@media screen and (max-width: 980px){
-  body,html, #root{
-    height: auto;
-    position: relative;
-  }
-  .ant-layout-footer {
-    margin-top: 30px;
-  }
-  .ant-layout-footer p{
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .conten-p-l {
-    padding-left: 30px;
-  }
-  .conten-p-r {
-    padding-right: 30px;
-  }
-  .ant-layout-footer p {
-    font-size: 12px;
-    width: calc(100% - 30px);
-  }
-}
-@media screen and (max-width: 1200px){
-  .conten-p-l {
-    padding-left: 30px;
-  }
-  .conten-p-r {
-    padding-right: 30px;
-  }
 }

@@ -1,0 +1,90 @@
+.login-con-mobile {
+  & {
+    width: 100%;
+    height: 100%;
+    background: #f7fafe;
+  }
+  .icon_con {
+    width: .85rem;
+    padding-top: 1.26rem;
+    text-align: center;
+    display: block;
+    width: 100%;
+    color: #fff;
+    font-size: 30px;
+  }
+  .reg-title-mobile {
+    width: 100%;
+    height: 4.1rem;
+    background-image: linear-gradient(to bottom, #00bcff , #0095fc);
+    border-radius: 0 0 .97rem .97rem;
+  }
+  .account_con {
+    & {
+      width: 6.45rem;
+      // height: 6.17rem;
+      background: #fff;
+      margin: -1.23rem auto 0;
+      box-shadow: 0 2px .23rem #ecf3f9;
+      box-sizing: border-box;
+      padding: .54rem .48rem .3rem;
+      border-radius: .15rem;
+    }
+    .ant-input {
+      border: 0;
+      border-bottom: 1px solid #d5d5d6;
+      padding-left: 0;
+    }
+    .ant-form-item {
+      position: relative;
+    }
+    .remeber_con{
+      height: .27rem;
+      line-height: .27rem;
+      margin-bottom: 1.31rem;
+      .ant-form-item-control-input {
+        text-align: left;
+      }
+      .ant-form-item-control-input {
+        min-height: auto;
+      }
+    }
+    .ant-form-item-explain {
+      text-align: left;
+      font-size: 8px;
+      // position: absolute;
+      top: 32px;
+      span {
+        color: #626567;
+      }
+    }
+    .psw-item {
+      margin-bottom: .2rem;
+    }
+    .confirm_btn_con .ant-btn-primary{
+      width: 5.42rem;
+      height: .92rem;
+      border-radius: .92rem;
+      box-sizing: border-box;
+      background: none;
+      background-image: linear-gradient(to bottom, #00c3ff , #0092ff);
+      font-size: 15px;
+      margin-bottom: .25rem;
+      transition: none;
+    }
+    .confim_con {
+      margin-bottom: 0;
+    }
+    .no-account{
+      &{
+        color: #808385;
+        font-size: 14px;
+      }
+      span {
+        color: #0087ff;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://faq.yunxin.163.com/kb/demo/player/player.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style class="vjs-styles-defaults">
+      .video-js {
+        width: 300px;
+        height: 150px;
+      }
+
+      .vjs-fluid {
+        padding-top: 56.25%
+      }
+    </style><style class="vjs-styles-dimensions">
+      .video-dimensions {
+        width: 960px;
+        height: 540px;
+      }
+
+      .video-dimensions.vjs-fluid {
+        padding-top: 56.25%;
+      }
+    </style>
+	
+	<title>播放器</title>
+	<script src="./player_files/jquery-3.3.1.min.js"></script>
+	<script src="./player_files/md5.min.js"></script>
+	<script src="./player_files/neplayer.min.js"></script>
+	<script>neplayer.setSWF('video-js.swf')</script>
+	<link href="./player_files/neplayer.min.css" rel="stylesheet">
+	<style type="text/css">
+		body {font-family: "Microsoft Yahei", "PingFang SC";}
+		#flashObject {display: none;}
+		#msg {color: #eee;text-align: center;font-size: 16px;position: relative;top: -80px;}
+		#customURL {text-align: center;font-size: 16px;display: none;}
+		input {padding: 0 15px;height: 40px;box-sizing: border-box;}
+		input[type=button] {-webkit-appearance: button;background: #ccc;border: 0px;margin: 0 10px;}
+		input[type=button]:hover { background: #09f; }
+		.error {position: absolute;width: 60%;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color: rgba(255, 255, 255, 0.9);color: #999;text-align: center;font-size: 20px;border: 1px solid #999;border-radius: 10px;padding: 50px 10px;display: none;} /* 错误提示样式 */
+	</style>
+</head>
+
+<body>
+	<!-- 用于显示Flash Object标签 -->
+	<object id="flashObject" type="application/x-shockwave-flash" style="height: 540px; width: 960px;"></object>
+
+	<!-- 用于显示播放器的div -->
+	<div>
+		<!-- 
+			video-js: 播放器样式正常加载所必需
+			vjs-big-play-centered: 使播放器的播放按钮位于播放器正中间
+
+			webkit-playsinline: Indicates that a video element should play inline instead of full-screen. Enabled only in a UIWebView with the allowsInlineMediaPlayback property set to YES.
+			apple官网页面：https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html
+			playsinline: When the playsinline property is specified, Safari on iPhone allows videos to play inline. Videos without the property will commence playback in fullscreen, but users can pinch close on the video to continue playing the video inline.
+			apple官网页面：https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html
+
+			x5-video-player-type="h5": 声明启用同层H5播放器
+			x5-video-player-fullscreen="true": 视频播放时将会进入到全屏模式
+			x5-video-orientation="landscape": 声明播放器支持的方向，landscape 横屏，portrait 竖屏，landscape|portrait 跟随手机自动旋转
+			腾讯H5同层播放器接入规范：https://x5.tencent.com/tbs/guide/video.html
+		 -->
+		<div x5-video-orientation="landscape" x5-video-player-fullscreen="true" x5-video-player-type="h5" playsinline="true" webkit-playsinline="" class="video-js vjs-big-play-centered vjs-paused video-dimensions vjs-live vjs-controls-enabled vjs-workinghover vjs-v6 vjs-user-active" id="video" tabindex="-1" lang="zh-cn" role="region" aria-label="Video Player"><video id="video_html5_api" class="vjs-tech" webkit-playsinline="" playsinline="playsinline" x5-video-player-type="h5" x5-video-player-fullscreen="true" x5-video-orientation="landscape" tabindex="-1" preload="auto"></video><div class="vjs-poster" tabindex="-1" aria-disabled="false" style="background-image: url(&quot;../../img/PlayerBG.png&quot;);"></div><div class="vjs-text-track-display" aria-live="off" aria-atomic="true"><div style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; margin: 1.5%;"></div></div><div class="vjs-loading-spinner" dir="ltr"><span class="vjs-control-text">Video Player is loading.</span></div><button class="vjs-big-play-button" type="button" title="Play Video" aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Play Video</span></button><div class="vjs-control-bar" dir="ltr"><button class="vjs-play-control vjs-control vjs-button" type="button" title="Play" aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Play</span></button><div class="vjs-volume-panel vjs-control vjs-volume-panel-horizontal"><button class="vjs-mute-control vjs-control vjs-button" type="button" title="Mute" aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Mute</span></button><div class="vjs-volume-control vjs-control vjs-volume-horizontal"><div tabindex="0" class="vjs-volume-bar vjs-slider-bar vjs-slider vjs-slider-horizontal" role="slider" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Volume Level" aria-live="polite" aria-valuetext="100%"><div class="vjs-volume-level"><span class="vjs-control-text"></span></div></div></div></div><div class="vjs-current-time vjs-time-control vjs-control"><span class="vjs-control-text">Current Time&nbsp;</span><span class="vjs-current-time-display" aria-live="off">0:00</span></div><div class="vjs-time-control vjs-time-divider"><div><span>/</span></div></div><div class="vjs-duration vjs-time-control vjs-control"><span class="vjs-control-text">Duration&nbsp;</span><span class="vjs-duration-display" aria-live="off">0:00</span></div><div class="vjs-progress-control vjs-control"><div tabindex="0" class="vjs-progress-holder vjs-slider vjs-slider-horizontal" role="slider" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progress Bar"><div class="vjs-load-progress"><span class="vjs-control-text"><span>Loaded</span>: 0%</span></div><div class="vjs-mouse-display"><div class="vjs-time-tooltip"></div></div><div class="vjs-play-progress vjs-slider-bar"><div class="vjs-time-tooltip"></div><span class="vjs-control-text"><span>Progress</span>: 0%</span></div></div></div><div class="vjs-live-control vjs-control"><div class="vjs-live-display" aria-live="off"><span class="vjs-control-text">Stream Type&nbsp;</span>LIVE</div></div><div class="vjs-remaining-time vjs-time-control vjs-control"><span class="vjs-control-text">Remaining Time&nbsp;</span><span class="vjs-remaining-time-display" aria-live="off">-0:00</span></div><div class="vjs-custom-control-spacer vjs-spacer ">&nbsp;</div><div class="vjs-playback-rate vjs-menu-button vjs-menu-button-popup vjs-control vjs-button"><button class="vjs-playback-rate vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Playback Rate" aria-haspopup="true" aria-expanded="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Playback Rate</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"><li class="vjs-menu-item" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="false"><span class="vjs-menu-item-text">3x</span><span class="vjs-control-text" aria-live="polite"></span></li><li class="vjs-menu-item" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="false"><span class="vjs-menu-item-text">2x</span><span class="vjs-control-text" aria-live="polite"></span></li><li class="vjs-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="true"><span class="vjs-menu-item-text">1x</span><span class="vjs-control-text" aria-live="polite">, selected</span></li></ul></div><div class="vjs-playback-rate-value">1x</div></div><div class="vjs-chapters-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden"><button class="vjs-chapters-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Chapters" aria-haspopup="true" aria-expanded="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Chapters</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"><li class="vjs-menu-title" tabindex="-1">Chapters</li></ul></div></div><div class="vjs-descriptions-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden"><button class="vjs-descriptions-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Descriptions" aria-haspopup="true" aria-expanded="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Descriptions</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"><li class="vjs-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="true"><span class="vjs-menu-item-text">descriptions off</span><span class="vjs-control-text" aria-live="polite">, selected</span></li></ul></div></div><div class="vjs-subs-caps-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden"><button class="vjs-subs-caps-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Subtitles" aria-haspopup="true" aria-expanded="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Subtitles</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"><li class="vjs-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="true"><span class="vjs-menu-item-text">captions and subtitles off</span><span class="vjs-control-text" aria-live="polite">, selected</span></li></ul></div></div><div class="vjs-audio-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden"><button class="vjs-audio-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Audio Track" aria-haspopup="true" aria-expanded="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Audio Track</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"></ul></div></div><button class="vjs-fullscreen-control vjs-control vjs-button" type="button" title="Fullscreen" aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Fullscreen</span></button></div><div class="vjs-modal-dialog vjs-hidden  vjs-text-track-settings" tabindex="-1" aria-describedby="video_component_455_description" aria-hidden="true" aria-label="Caption Settings Dialog" role="dialog"><p class="vjs-modal-dialog-description vjs-control-text" id="video_component_455_description">Beginning of dialog window. Escape will cancel and close the window.</p><div class="vjs-modal-dialog-content" role="document"><div class="vjs-track-settings-colors"><fieldset class="vjs-fg-color vjs-track-setting"><legend id="captions-text-legend-video_component_455">Text</legend><label id="captions-foreground-color-video_component_455" class="vjs-label">Color</label><select aria-labelledby="captions-text-legend-video_component_455 captions-foreground-color-video_component_455"><option id="captions-foreground-color-video_component_455-White" value="#FFF" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-color-video_component_455 captions-foreground-color-video_component_455-White">White</option><option id="captions-foreground-color-video_component_455-Black" value="#000" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-color-video_component_455 captions-foreground-color-video_component_455-Black">Black</option><option id="captions-foreground-color-video_component_455-Red" value="#F00" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-color-video_component_455 captions-foreground-color-video_component_455-Red">Red</option><option id="captions-foreground-color-video_component_455-Green" value="#0F0" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-color-video_component_455 captions-foreground-color-video_component_455-Green">Green</option><option id="captions-foreground-color-video_component_455-Blue" value="#00F" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-color-video_component_455 captions-foreground-color-video_component_455-Blue">Blue</option><option id="captions-foreground-color-video_component_455-Yellow" value="#FF0" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-color-video_component_455 captions-foreground-color-video_component_455-Yellow">Yellow</option><option id="captions-foreground-color-video_component_455-Magenta" value="#F0F" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-color-video_component_455 captions-foreground-color-video_component_455-Magenta">Magenta</option><option id="captions-foreground-color-video_component_455-Cyan" value="#0FF" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-color-video_component_455 captions-foreground-color-video_component_455-Cyan">Cyan</option></select><span class="vjs-text-opacity vjs-opacity"><label id="captions-foreground-opacity-video_component_455" class="vjs-label">Transparency</label><select aria-labelledby="captions-text-legend-video_component_455 captions-foreground-opacity-video_component_455"><option id="captions-foreground-opacity-video_component_455-Opaque" value="1" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-opacity-video_component_455 captions-foreground-opacity-video_component_455-Opaque">Opaque</option><option id="captions-foreground-opacity-video_component_455-SemiTransparent" value="0.5" aria-labelledby="captions-text-legend-video_component_455 captions-foreground-opacity-video_component_455 captions-foreground-opacity-video_component_455-SemiTransparent">Semi-Transparent</option></select></span></fieldset><fieldset class="vjs-bg-color vjs-track-setting"><legend id="captions-background-video_component_455">Background</legend><label id="captions-background-color-video_component_455" class="vjs-label">Color</label><select aria-labelledby="captions-background-video_component_455 captions-background-color-video_component_455"><option id="captions-background-color-video_component_455-Black" value="#000" aria-labelledby="captions-background-video_component_455 captions-background-color-video_component_455 captions-background-color-video_component_455-Black">Black</option><option id="captions-background-color-video_component_455-White" value="#FFF" aria-labelledby="captions-background-video_component_455 captions-background-color-video_component_455 captions-background-color-video_component_455-White">White</option><option id="captions-background-color-video_component_455-Red" value="#F00" aria-labelledby="captions-background-video_component_455 captions-background-color-video_component_455 captions-background-color-video_component_455-Red">Red</option><option id="captions-background-color-video_component_455-Green" value="#0F0" aria-labelledby="captions-background-video_component_455 captions-background-color-video_component_455 captions-background-color-video_component_455-Green">Green</option><option id="captions-background-color-video_component_455-Blue" value="#00F" aria-labelledby="captions-background-video_component_455 captions-background-color-video_component_455 captions-background-color-video_component_455-Blue">Blue</option><option id="captions-background-color-video_component_455-Yellow" value="#FF0" aria-labelledby="captions-background-video_component_455 captions-background-color-video_component_455 captions-background-color-video_component_455-Yellow">Yellow</option><option id="captions-background-color-video_component_455-Magenta" value="#F0F" aria-labelledby="captions-background-video_component_455 captions-background-color-video_component_455 captions-background-color-video_component_455-Magenta">Magenta</option><option id="captions-background-color-video_component_455-Cyan" value="#0FF" aria-labelledby="captions-background-video_component_455 captions-background-color-video_component_455 captions-background-color-video_component_455-Cyan">Cyan</option></select><span class="vjs-bg-opacity vjs-opacity"><label id="captions-background-opacity-video_component_455" class="vjs-label">Transparency</label><select aria-labelledby="captions-background-video_component_455 captions-background-opacity-video_component_455"><option id="captions-background-opacity-video_component_455-Opaque" value="1" aria-labelledby="captions-background-video_component_455 captions-background-opacity-video_component_455 captions-background-opacity-video_component_455-Opaque">Opaque</option><option id="captions-background-opacity-video_component_455-SemiTransparent" value="0.5" aria-labelledby="captions-background-video_component_455 captions-background-opacity-video_component_455 captions-background-opacity-video_component_455-SemiTransparent">Semi-Transparent</option><option id="captions-background-opacity-video_component_455-Transparent" value="0" aria-labelledby="captions-background-video_component_455 captions-background-opacity-video_component_455 captions-background-opacity-video_component_455-Transparent">Transparent</option></select></span></fieldset><fieldset class="vjs-window-color vjs-track-setting"><legend id="captions-window-video_component_455">Window</legend><label id="captions-window-color-video_component_455" class="vjs-label">Color</label><select aria-labelledby="captions-window-video_component_455 captions-window-color-video_component_455"><option id="captions-window-color-video_component_455-Black" value="#000" aria-labelledby="captions-window-video_component_455 captions-window-color-video_component_455 captions-window-color-video_component_455-Black">Black</option><option id="captions-window-color-video_component_455-White" value="#FFF" aria-labelledby="captions-window-video_component_455 captions-window-color-video_component_455 captions-window-color-video_component_455-White">White</option><option id="captions-window-color-video_component_455-Red" value="#F00" aria-labelledby="captions-window-video_component_455 captions-window-color-video_component_455 captions-window-color-video_component_455-Red">Red</option><option id="captions-window-color-video_component_455-Green" value="#0F0" aria-labelledby="captions-window-video_component_455 captions-window-color-video_component_455 captions-window-color-video_component_455-Green">Green</option><option id="captions-window-color-video_component_455-Blue" value="#00F" aria-labelledby="captions-window-video_component_455 captions-window-color-video_component_455 captions-window-color-video_component_455-Blue">Blue</option><option id="captions-window-color-video_component_455-Yellow" value="#FF0" aria-labelledby="captions-window-video_component_455 captions-window-color-video_component_455 captions-window-color-video_component_455-Yellow">Yellow</option><option id="captions-window-color-video_component_455-Magenta" value="#F0F" aria-labelledby="captions-window-video_component_455 captions-window-color-video_component_455 captions-window-color-video_component_455-Magenta">Magenta</option><option id="captions-window-color-video_component_455-Cyan" value="#0FF" aria-labelledby="captions-window-video_component_455 captions-window-color-video_component_455 captions-window-color-video_component_455-Cyan">Cyan</option></select><span class="vjs-window-opacity vjs-opacity"><label id="captions-window-opacity-video_component_455" class="vjs-label">Transparency</label><select aria-labelledby="captions-window-video_component_455 captions-window-opacity-video_component_455"><option id="captions-window-opacity-video_component_455-Transparent" value="0" aria-labelledby="captions-window-video_component_455 captions-window-opacity-video_component_455 captions-window-opacity-video_component_455-Transparent">Transparent</option><option id="captions-window-opacity-video_component_455-SemiTransparent" value="0.5" aria-labelledby="captions-window-video_component_455 captions-window-opacity-video_component_455 captions-window-opacity-video_component_455-SemiTransparent">Semi-Transparent</option><option id="captions-window-opacity-video_component_455-Opaque" value="1" aria-labelledby="captions-window-video_component_455 captions-window-opacity-video_component_455 captions-window-opacity-video_component_455-Opaque">Opaque</option></select></span></fieldset></div><div class="vjs-track-settings-font"><fieldset class="vjs-font-percent vjs-track-setting"><legend id="captions-font-size-video_component_455" class="">Font Size</legend><select aria-labelledby="captions-font-size-video_component_455"><option id="captions-font-size-video_component_455-50" value="0.50" aria-labelledby="captions-font-size-video_component_455 captions-font-size-video_component_455-50">50%</option><option id="captions-font-size-video_component_455-75" value="0.75" aria-labelledby="captions-font-size-video_component_455 captions-font-size-video_component_455-75">75%</option><option id="captions-font-size-video_component_455-100" value="1.00" aria-labelledby="captions-font-size-video_component_455 captions-font-size-video_component_455-100">100%</option><option id="captions-font-size-video_component_455-125" value="1.25" aria-labelledby="captions-font-size-video_component_455 captions-font-size-video_component_455-125">125%</option><option id="captions-font-size-video_component_455-150" value="1.50" aria-labelledby="captions-font-size-video_component_455 captions-font-size-video_component_455-150">150%</option><option id="captions-font-size-video_component_455-175" value="1.75" aria-labelledby="captions-font-size-video_component_455 captions-font-size-video_component_455-175">175%</option><option id="captions-font-size-video_component_455-200" value="2.00" aria-labelledby="captions-font-size-video_component_455 captions-font-size-video_component_455-200">200%</option><option id="captions-font-size-video_component_455-300" value="3.00" aria-labelledby="captions-font-size-video_component_455 captions-font-size-video_component_455-300">300%</option><option id="captions-font-size-video_component_455-400" value="4.00" aria-labelledby="captions-font-size-video_component_455 captions-font-size-video_component_455-400">400%</option></select></fieldset><fieldset class="vjs-edge-style vjs-track-setting"><legend id="video_component_455" class="">Text Edge Style</legend><select aria-labelledby="video_component_455"><option id="video_component_455-None" value="none" aria-labelledby="video_component_455 video_component_455-None">None</option><option id="video_component_455-Raised" value="raised" aria-labelledby="video_component_455 video_component_455-Raised">Raised</option><option id="video_component_455-Depressed" value="depressed" aria-labelledby="video_component_455 video_component_455-Depressed">Depressed</option><option id="video_component_455-Uniform" value="uniform" aria-labelledby="video_component_455 video_component_455-Uniform">Uniform</option><option id="video_component_455-Dropshadow" value="dropshadow" aria-labelledby="video_component_455 video_component_455-Dropshadow">Dropshadow</option></select></fieldset><fieldset class="vjs-font-family vjs-track-setting"><legend id="captions-font-family-video_component_455" class="">Font Family</legend><select aria-labelledby="captions-font-family-video_component_455"><option id="captions-font-family-video_component_455-ProportionalSansSerif" value="proportionalSansSerif" aria-labelledby="captions-font-family-video_component_455 captions-font-family-video_component_455-ProportionalSansSerif">Proportional Sans-Serif</option><option id="captions-font-family-video_component_455-MonospaceSansSerif" value="monospaceSansSerif" aria-labelledby="captions-font-family-video_component_455 captions-font-family-video_component_455-MonospaceSansSerif">Monospace Sans-Serif</option><option id="captions-font-family-video_component_455-ProportionalSerif" value="proportionalSerif" aria-labelledby="captions-font-family-video_component_455 captions-font-family-video_component_455-ProportionalSerif">Proportional Serif</option><option id="captions-font-family-video_component_455-MonospaceSerif" value="monospaceSerif" aria-labelledby="captions-font-family-video_component_455 captions-font-family-video_component_455-MonospaceSerif">Monospace Serif</option><option id="captions-font-family-video_component_455-Casual" value="casual" aria-labelledby="captions-font-family-video_component_455 captions-font-family-video_component_455-Casual">Casual</option><option id="captions-font-family-video_component_455-Script" value="script" aria-labelledby="captions-font-family-video_component_455 captions-font-family-video_component_455-Script">Script</option><option id="captions-font-family-video_component_455-SmallCaps" value="small-caps" aria-labelledby="captions-font-family-video_component_455 captions-font-family-video_component_455-SmallCaps">Small Caps</option></select></fieldset></div><div class="vjs-track-settings-controls"><button type="button" class="vjs-default-button" title="restore all settings to the default values">Reset<span class="vjs-control-text"> restore all settings to the default values</span></button><button type="button" class="vjs-done-button">Done</button></div></div><button class="vjs-close-button vjs-control vjs-button" type="button" aria-disabled="false" title="Close Modal Dialog"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Close Modal Dialog</span></button><p class="vjs-control-text">End of dialog window.</p></div><div class="error"></div></div>
+	</div>
+
+	<!-- 用于同层显示信息的div -->
+	<div id="msg" style="width: 960px;">播放器初始化完成</div>
+
+	<!-- 自定义播放地址的div -->
+	<div id="customURL" style="width: 960px; display: block;">
+		<input id="URL" type="text" placeholder="输入播放地址，不设置则使用默认地址播放" style="width: 600px;">
+		<input id="btnPlay" type="button" value="播放">
+		<input id="btnChangePage" type="button" value="切换播放页面">
+	</div>
+
+	<script>
+		window.onload = function () {
+			if (navigator.userAgent.indexOf('QQBrowser') != -1 && navigator.userAgent.indexOf('Android') != -1) {
+				alert('[注意] 在Android版微信中播放视频可能会被自动全屏。');
+			}
+
+			// // 模拟和应用服务器交互校验
+			// var timestamp = new Date().getTime();
+			// var token = timestamp + md5(timestamp);
+			// $.ajax({
+			// 	type: "post",
+			// 	url: "../../php/hall/demo/hello_demo.php",
+			// 	data: { "type": 1, "token": token},
+			// 	success: function (data) {
+			// 		// 此处处理服务器的返回
+			// 	}
+			// })
+		}
+
+		var pageUrlProtocol = (window.location.protocol.indexOf('https') == 0) ? 'https' : 'http';
+
+		// 常用控制变量 集中配置区域 起点 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+		var videoWidth = 960;							// 播放器的宽度（像素）
+		var videoHeight = 540;							// 播放器的高度（像素）
+		var retry = true;								// 拉流失败，是否自动重试
+		var maxRetryDuration = 1000 * 120;				// 拉流重试的最大时长，单位为毫秒
+		var streamTimeoutTime = 1000 * 30;				// 拉流超时时间，单位为毫秒，默认30秒
+		var poster = "../../img/PlayerBG.png";			// 设置播放器背景图
+		var defaultVideoSrc = "http://pullhls4d52bcb0.live.126.net/live/1b7440ddb8184ed1ac10854553f971e9/playlist.m3u8";							// 默认视频源
+		// 常用控制变量 集中配置区域 终点 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+		// // 模拟从应用服务器获取播放地址
+		// $.ajax({
+		// 	type: "post",
+		// 	url: "../../php/hall/demo/get_demo_info.php",
+		// 	data: { "type": "playUrl" },
+		// 	success: function (data) {
+		// 		if (data.code != 200) {
+		// 			defaultVideoSrc = '';
+		// 		} else {
+		// 			defaultVideoSrc = pageUrlProtocol + ":" + data.msg.playUrl.replace(/http(s)?:/, '');
+		// 		}
+		// 	}
+		// })
+
+		// 页面元素 获取和设置 起点 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+		var oVideo;			// 此时播放器尚未初始化，获取不到所需的div，待播放器初始化完成后再获取
+		var oFlashObject = document.getElementById('flashObject');
+		var oMsg = document.getElementById("msg");
+		var oCustomURL = document.getElementById("customURL");
+		oFlashObject.style.height = videoHeight + 'px';
+		oFlashObject.style.width = oMsg.style.width = oCustomURL.style.width = (videoWidth + "px");	// 根据播放器宽度来匹配div的宽度
+		var oURL = document.getElementById("URL");
+		oURL.value = sessionStorage.getItem("url");	// 读取已保存的播放地址，并设置到地址输入框中
+		// 设置播放地址输入框的宽度
+		if (videoWidth >= 700) {
+			oURL.style.width = "600px";
+		} else if (videoWidth >= 300) {
+			oURL.style.width = (videoWidth - 100) + "px";
+		}
+		var oPlay = document.getElementById("btnPlay");
+		var oChangePage = document.getElementById("btnChangePage");
+		// 页面元素 获取和设置 终点 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+		// 自定义错误信息 起点 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+		var errorElement = document.createElement("div");						// 定义错误提示元素
+		neplayer.lib.dom.addClass(errorElement, "error");						// 为其添加样式
+		var Component = neplayer.lib.getComponent("Component");					// 获取所有UI组件的基类
+		var ErrorComponent = neplayer.lib.extend(Component, {});				// 继承组件
+		var errorComponent = new ErrorComponent(null, { el: errorElement });	// 实例化错误提示组件，传入错误提示元素
+		var refreshMessage = "播放出现错误，正在进行重试...";					// 播放器重试时的提示内容
+		var failedMessage = "播放出现错误，进行重试失败，已经停止播放。";		// 重试失败后的提示内容
+		// 自定义错误信息 终点 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+		// 处理重试信息的变量 起点 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+		var streamType = "vod";							// 流类型：live/vod，默认为vod
+		var streamDuration = 0;							// 保存流总时长的变量
+		var currentPosition = 0;						// 保存当前播放位置的变量
+		var historyPosition = 0;						// 保存最后播放位置的变量
+		var minTime = 1000 * 3;							// 定义最后播放位置的最小值
+		var timer = null;								// 保存当前播放位置的定时器
+		var refreshTimes = 0;							// 刷新计数器
+		// 处理重试信息的变量 终点 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+		var protocolMismatch;	// 网页地址和播放地址协议不匹配；
+		var videoSrc;			// 用于保存视频源地址
+		var videoType;			// 用于保存视频源type
+		// 检查视频源格式对应的type
+		/* 视频源格式与type的对应关系
+ 		 * RTMP     	rtmp/flv
+ 		 * HTTP-FLV	    video/x-flv
+ 		 * HLS(m3u8)	application/x-mpegURL
+ 		 * MP4      	video/mp4
+		 */
+		function checkVideoType(videoSrc) {
+			console.log("视频地址为：" + videoSrc);
+			if (videoSrc) {
+				temp = videoSrc.toLocaleLowerCase();
+				if (temp.indexOf("rtmp://") == 0) {
+					console.log("视频源格式为：rtmp");
+					checkFlash(); // 播放RTMP需要Adobe Flash Player
+					return "rtmp/flv";
+				}
+				if (temp.indexOf("http") == 0) {
+					// 比较浏览器地址栏url协议和播放地址协议
+					var playUrlProtocol = (temp.indexOf('https') == 0) ? 'https' : 'http';
+					if (playUrlProtocol !== pageUrlProtocol) {
+						showPageProtocolMsg(playUrlProtocol);
+					} else {
+						if (temp.indexOf(".flv") > 0) {
+							console.log("视频源格式为：http-flv");
+							return "video/x-flv";
+						}
+						if (temp.indexOf(".m3u8") > 0) {
+							console.log("视频源格式为：hls(m3u8)");
+							return "application/x-mpegURL";
+						}
+						if (temp.indexOf(".mp4") > 0) {
+							console.log("视频源格式为：mp4");
+							return "video/mp4";
+						}
+					}
+				}
+			}
+			return "unsupported";
+		}
+
+		// 检查页面是否允许Flash
+		function checkFlash() {
+			if ((navigator.userAgent.indexOf('Firefox') != -1) && (navigator.userAgent.indexOf('Windows') != -1)) {
+				showMsg('你正在尝试使用Firefox播放rtmp地址。<br>Firefox可能需要在地址栏左侧主动点击允许运行Adobe Flash才能正常播放视频。');
+			}
+			if (!neplayer.checkFlash()) {
+				oURL.style.display = oPlay.style.display = oVideo.style.display = 'none';
+				oFlashObject.style.display = 'block';
+				showMsg('你正在尝试播放rtmp地址，请按照提示点击启用Adobe Flash Player后重试。<br>如果浏览器无法加载插件或插件不受支持，请刷新页面并更换其它格式地址。');
+				oMsg.style.color = '#666';
+				retry = false;
+			}
+		}
+
+		// 显示和记录消息的函数
+		function showMsg(msg) {
+			oMsg.innerHTML = msg;
+			console.log(msg);
+		}
+
+		// 显示切换http/https提示
+		function showPageProtocolMsg(playUrlProtocol) {
+			showMsg('当前播放地址为 <b>' + playUrlProtocol + '</b> 协议，而页面地址为 <b>' + pageUrlProtocol + '</b> 协议，两者不一致可能导致播放失败。<br>请点击「切换播放页面」按钮切换页面地址，如已切换请粘贴播放地址并重新点击「播放」按钮。');
+			protocolMismatch = true;
+		}
+
+		// 播放器
+		var player = neplayer("video", {
+			// 标准的 video 标签选项
+			"autoplay": false,							// If true present as an attribute, begins playback when the player is ready.
+			"controls": true,							// colentrols: Determines whether or not the player has controls that the user can interact with. Without controls the only way to start the video playing is with the autoplay attribute or through the Player API.
+			"width": videoWidth,						// Sets the display height of the video player in pixels.
+			"height": videoHeight,						// Sets the display height of the video player in pixels.
+			"loop": false,								// Causes the video to start over as soon as it ends.
+			"muted": false,								// muted: Will silence any audio by default.
+			"poster": poster,							// poster: A URL to an image that displays before the video begins playing. This is often a frame of the video or a custom title screen. As soon as the user hits "play" the image will go away.
+			/* preload: Suggests to the browser whether or not the video data should begin downloading as soon as the <video> element is loaded. Supported values are: 'auto', 'metadata', 'none'.
+			 * 'auto': Start loading the video immediately (if the browser supports it). Some mobile devices will not preload the video in order to protect their users' bandwidth/data usage. This is why the value is called 'auto' and not something more conclusive like 'true'.
+				This tends to be the most common and recommended value as it allows the browser to choose the best behavior.
+			 * 'metadata': Load only the meta data of the video, which includes information like the duration and dimensions of the video. Sometimes, the meta data will be loaded by downloading a few frames of video.
+			 * 'none': Don't preload any data. The browser will wait until the user hits "play" to begin downloading.
+			 */
+			"preload": "auto",
+
+			// Video.js-specific Options: Each option is undefined by default unless otherwise specified.
+			"techOrder": ['html5','flvjs','flash'],		// 优先使用的播放模式（2.3.0版本开始支持flv.js）
+			"streamTimeoutTime": streamTimeoutTime,		// 拉流超时时间
+			loadingSpinner: true,						// loadingSpinner: A loading spinner for use during waiting/loading events.
+			bigPlayButton: true,						// bigPlayButton: The initial play button that shows before the video has played.
+			controlBar: {								// controlBar: Container of main controls.
+				playToggle: true,						// playToggle: Button to toggle between play and pause. 播放暂停按钮
+				volumeMenuButton: true,					// volumeMenuButton: A Component to contain the MuteToggle and VolumeControl so that they can work together.
+				currentTimeDisplay: true,				// currentTimeDisplay: Displays the current time. (hidden by default)
+				timeDivider: true,						// timeDivider: The separator between the current time and duration. Can be hidden if it's not needed in the design. (hidden by default)
+				durationDisplay: true,					// durationDisplay: Displays the duration. (hidden by default)
+				progressControl: {						// progressControl: The Progress Control component contains the seek bar, load progress, and play progress. (hidden during live playback)
+					seekBar: {							// seekBar: Seek bar and container for the progress bars. Uses PlayProgressBar as its bar.
+						loadProgressBar: true,			// loadProgressBar: Shows loading progress.
+						mouseTimeDisplay: true,			// mouseTimeDisplay: The MouseTimeDisplay component tracks mouse movement over the ProgressControl. It displays an indicator and a TimeTooltip indicating the time which is represented by a given point in the ProgressControl.
+						playProgressBar: true			// playProgressBar: Used by SeekBar to display media playback progress as part of the ProgressControl.
+					}
+				},
+				liveDisplay: true,						// liveDisplay: Displays the live indicator when duration is Infinity. (hidden during VOD playback)
+				remainingTimeDisplay: true,				// remainingTimeDisplay: Displays the time left in the video.
+				playbackRateMenuButton: {				// playbackRateMenuButton: The component for controlling the playback rate. (hidden, unless playback tech supports rate changes)(当前只有html5模式才支持设置播放速率)
+					playbackRates: [1, 2, 3]
+				},
+				fullscreenToggle: true
+			},
+			errorDisplay: false							// errorDisplay: A display that indicates an error has occurred. This means that the video is unplayable. (hidden, until there is an error)(使用自定义错误组件时，将此项设置为false)
+		}, function () {
+			showMsg("播放器初始化完成");
+			// 播放器初始化完成后，获取已经已经生成的video div
+			oVideo = document.getElementById('video');
+			// 显示指定播放地址的DIV
+			oCustomURL.style.display = "block";
+			// 添加错误提示组件到player.corePlayer
+			player.corePlayer.addChild(errorComponent, {});
+			// 设置数据源，数组可以包含多个不同视频格式的数据源，播放器会依次尝试，寻找支持的格式进行播放
+			if (defaultVideoSrc) {
+				player.setDataSource({type: checkVideoType(defaultVideoSrc), src: defaultVideoSrc});
+			} else {
+				player.setDataSource("");
+			}
+		})
+
+		// // x5videoexitfullscreen: 表示播放器退出全屏状态
+		// video_html5_api.addEventListener("x5videoexitfullscreen", function () {
+		// 	showMsg("X5浏览器事件通知：播放器已经退出全屏，视频自动暂停播放");
+		// })
+
+		oPlay.onclick = function () {
+			errorElement.style.display = "none";
+			sessionStorage.setItem("url", oURL.value);	// 保存播放地址
+			if (timer) {
+				clearInterval(timer);
+			}
+			//player.pause();
+			if (oURL.value != "") {
+				videoSrc = oURL.value.replace(/(^\s*)|(\s*$)/g, "");	//去除首尾空格
+				videoType = checkVideoType(videoSrc);
+				if (videoType == "unsupported") {
+					player.setDataSource("");
+				} else {
+					// // 此处用于演示播放加密文件
+					// var odecryptInfo = {
+					// 	"appKey": "abcdefghijklmnopqrstuvwxyz",
+					// 	"accid": "accid001",
+					// 	"token": "123456",
+					// 	"transferToken": "tag=4d3e861d-4434-4873-8ad1-13b0879414a0&time=1517283252&expire=1519875252&nonce=jpacgpsteyfbbwrw&algo=1&checksum=8f5aca80a869b3f4dfe48fe85442dc6cfaa1b9dc"
+					// }
+					// player.setDataSource({
+					// 	type: videoType, src: videoSrc, decryptInfo: odecryptInfo
+					// });
+					player.setDataSource({ type: videoType, src: videoSrc });
+					player.play();
+				}
+			} else {
+				// 如果播放url输入框为空
+				if (protocolMismatch) {
+					// 阻止播放操作
+				} else {
+					if (videoSrc == defaultVideoSrc) {
+						showMsg("使用默认地址开始或继续播放");
+						player.play();
+					} else {
+						showMsg("使用默认地址从头开始播放");
+						videoSrc = defaultVideoSrc;
+						player.setDataSource({
+							type: checkVideoType(videoSrc), src: videoSrc
+						});
+						player.play();
+					}
+				}
+			}
+		}
+
+		oChangePage.onclick = function () {
+			var newProtocol = (pageUrlProtocol === 'https') ? 'http:' : 'https:';
+			window.location.href = newProtocol + window.location.href.substring(window.location.protocol.length);
+		}
+
+		function getCurrentPosition() {
+			currentPosition = player.getCurrentPosition();
+			showMsg("当前播放到：第 " + currentPosition + " 毫秒");
+		}
+
+		player.on("canplay", function () {
+			// 播放准备就绪的时候，隐藏错误提示元素
+			errorElement.style.display = "none";
+			showMsg("播放准备就绪，点击播放按钮开始播放");
+		});
+
+		// Fired when the duration of the media resource is first known or changed
+		// 由于网络、缓存、浏览器等原因，总时长可能会发生变化，因此需要相应地调整流类型，以最后得到的为准
+		player.on("durationchange", function () {
+			// The video must have started loading before the duration can be known, and in the case of Flash, may not be known until the video starts playing.
+			streamDuration = player.getDuration();
+			if (streamDuration === Infinity) {
+				streamType = "live";
+				showMsg("获取到的总时长为Infinity，按直播处理");
+			} else {
+				streamType = "vod";
+				showMsg("获取到的文件或缓存总时长： " + streamDuration + " 毫秒，按点播处理");
+			};
+		});
+
+		player.on("playing", function () {
+			showMsg("正在播放...");
+			// 正在播放时，隐藏错误提示，将刷新计数器置零，并定时获取当前播放位置（正在等待数据、播放已暂停、播放已结束、播放出现错误、自定义播放时，停止计数器）
+			errorElement.style.display = "none";
+			refreshTimes = 0;
+			timer = setInterval(getCurrentPosition, 500);
+		});
+
+		player.on("waiting", function () {
+			showMsg("正在等待数据...");
+			clearInterval(timer);
+		});
+
+		player.onPlayState(1, function () {
+			showMsg("尝试播放...");
+		});
+
+		player.onPlayState(2, function () {
+			if (protocolMismatch === undefined) {
+				showMsg("播放已暂停");
+			} else {
+				// 阻止暂停提示
+			}
+			clearInterval(timer);
+		});
+
+		player.onPlayState(3, function () {
+			showMsg("播放已结束");
+			clearInterval(timer);
+		});
+
+		player.onError(function (err) {
+			if (protocolMismatch !== undefined) {
+				// 不进行任何操作，阻止更改提示或进行重试
+			} else if (videoType === "unsupported") {
+				showMsg("视频源格式并非rtmp、http-flv、hls(m3u8)、mp4，请检查确认");
+			} else if (retry) {
+				showMsg("播放出现错误，错误代码：" + err.errCode + "，错误信息：" + err.errMsg);
+				clearInterval(timer);
+				// 如果当前播放时间大于指定时间，则记录最后播放位置，刷新播放器后，从该位置开始重试播放
+				if (currentPosition >= minTime) {
+					historyPosition = currentPosition;
+					currentPosition = 0;
+				}
+				// 拉流重试次数通过“拉流重试的最大时长/拉流超时时间”计算得出
+				if (refreshTimes < (maxRetryDuration / streamTimeoutTime)) {
+					// 进行重试，显示错误提示元素和重试提示信息
+					errorElement.innerHTML = refreshMessage;
+					errorElement.style.display = "block";
+					// 如果是点播并且记录了最后播放位置，则刷新后跳转到该位置进行播放
+					if (streamType === "vod" && historyPosition != 0) {
+						showMsg("最后播放位置：第" + historyPosition + "毫秒，当前进行第 " + (++refreshTimes) + " 次刷新重试");
+						player.refresh();
+						player.seekTo(historyPosition);
+						player.play();
+					} else {
+						// 否则从头开始播放
+						showMsg("当前进行第 " + (++refreshTimes) + " 次刷新重试");
+						player.refresh();
+					}
+				} else {
+					// 达到最大重试次数，放弃重试，显示失败提示信息
+					errorElement.innerHTML = failedMessage;
+					showMsg("达到最大重试次数，放弃重试，停止播放");
+				}
+			}
+		});
+	</script>
+
+
+</body></html>

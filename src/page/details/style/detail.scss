@@ -1,0 +1,91 @@
+::-webkit-scrollbar{
+  height: 3px;
+}
+.detail-page {
+  background: #f7fafe;
+  height: 100%;
+  width: 100%;
+  .detail_menu_con {
+    & {
+      background: #fff;
+      border-radius: 0 0 .4rem .4rem;
+      padding: .38rem .4rem 0;
+      box-shadow: 0 2px 12px #eef4fa;
+      margin-bottom: .36rem;
+    }
+    .product_logo {
+      height: .55rem;
+      margin-bottom: .4rem;
+      display: block;
+    }
+    .tools_con {
+      & {
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+      }
+      li {
+        & {
+          display: inline-block;
+          box-sizing: border-box;
+          padding-bottom: .2rem;
+          margin-right: .67rem;
+          position: relative;
+        }
+        .icon_icon {
+          width: .66rem;
+          height: .61rem;
+          margin: 0 auto;
+          background: url('../img/product.png') no-repeat center top;
+          background-size: contain;
+        }
+        div{
+          font-size: 14px;
+          color: #545759;
+          line-height: 14px;
+          margin-top: .06rem;
+          text-align: center;
+        }
+        .underline {
+          position: absolute;
+          left: 0;
+          bottom: -.03rem;
+          right: 0;
+          height: .06rem;
+          background: #008fff;
+          border-radius: .06rem;
+        }
+        &.concat_us .icon_icon{
+          background-image: url('../img/concatUs.png');
+        }
+      }
+    }
+    .sort_con {
+      & {
+        padding-bottom: .13rem;
+        text-align: left;
+        white-space: nowrap;
+        overflow-y: scroll;
+      }
+      li {
+        & {
+          padding-top: .24rem;
+          display: inline-block;
+          margin-right: .38rem;
+          font-size: 16px;
+          line-height: 16px;
+          color: #545759;
+        }
+        span {
+          display: block;
+          width: 0;
+          height: 0;
+          border-left: .12rem solid transparent;
+          border-right: .12rem solid transparent;
+          border-bottom: .12rem solid #0091ff;
+          margin-top: .25rem;
+          margin-left: .14rem;
+        }
+      }
+    }
+  }
+}

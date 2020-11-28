@@ -1,0 +1,76 @@
+.product_con {
+  .carousel_con {
+    & {
+      padding: 0 .41rem;
+    }
+    .slider-frame {
+      border-radius: .35rem;
+    }
+    .carousel_list {
+      height: 3.5rem;
+      // background-color: #f30;
+      overflow: hidden;
+      // border-radius: .35rem;
+      .c-img {
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+      }
+      .video-player {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .am-carousel {
+      height: 3.4rem;
+    }
+    .am-carousel-wrap-dot > span {
+      width: .14rem;
+      height: .14rem;
+      background: #d8d8d8;
+      border-radius: .14rem;
+      transition: all ease .5s;
+    }
+    .am-carousel-wrap-dot-active > span {
+      background: #0091ff;
+      width: .32rem;
+    }
+  }
+  .introduce {
+    & {
+      padding-left: .2rem;
+      margin-top: .57rem;
+    }
+    &>li {
+      & {
+        margin-bottom: .68rem;
+        border-radius: .1rem 0 0 .1rem;
+        background: #fff;
+        padding: .6rem .08rem .2rem .39rem;
+        text-align: left;
+        // font-size: 18px;
+        // line-height: 24px;
+        font-size: 14px;
+        line-height: 24px;
+        color: #545759;
+        box-shadow: 0 2px 12px #eef4fa;
+        position: relative;
+      }
+      &>span {
+        position: absolute;
+        padding: .16rem;
+        background: #0091FF;
+        color: #F7FAFE;
+        font-size: 20px;
+        line-height: 20px;
+        border-radius: .13rem;
+        left: .2rem;
+        top: -.34rem;
+      }
+      li, span, p {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+}

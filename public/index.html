@@ -3,12 +3,49 @@
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+
+    <!-- 设置移动端视图 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <meta name="format-detection" content="telphone=no, email=no" />
+
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
     <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -16,10 +53,21 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="stylesheet" type="text/css" href="./mapplic/mapplic.css">
-
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script src="./mapplic/jquery.min.js"></script>
     <script type="text/javascript" src="./mapplic/jquery.mousewheel.js"></script>
     <script src="./mapplic/mapplic.js"></script>
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <script>
+      if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body);
+        }, false);
+      }
+      if(!window.Promise) {
+        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+      }
+    </script>
     <script>
       function haveDisplay(linkUrl){
         window.open(linkUrl,"_blank");
@@ -33,13 +81,13 @@
         var mapplic = $('#mapplic').mapplic({
           source: dataStr,
           sidebar: true,
-          height: 740,
+          height: 200,
           fullscreen: true,
           maxscale: 1.8
         });
       }
       window.init = init;
-    
+
     </script>
     <style>
       .mapplic-list-location {
@@ -51,6 +99,11 @@
         background-color: #f2dede;
         border-color: #ebccd1;
 
+      }
+      #cnzz_stat_icon_1279011737 img, #cnzz_stat_icon_1279011737{
+        display: block;
+        width: 0;
+        height: 0;
       }
 
     </style>

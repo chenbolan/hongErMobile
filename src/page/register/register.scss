@@ -1,0 +1,68 @@
+.register_con {
+  & {
+    padding: .43rem;
+  }
+  .reg-title span {
+    font-size: 25px;
+  }
+  .ant-input, .ant-input-password{
+    border: 0;
+    border-bottom: 1px solid #d5d5d6;
+    padding-left: 0;
+  }
+  label.ant-form-item-required::before {
+    content: '';
+  }
+  .ant-form-item-required {
+    height: 14px;
+    color: #535658;
+  }
+  .ant-form-item-explain {
+    text-align: left;
+    font-size: 10px;
+    position: absolute;
+    top: 32px;
+  }
+  .ant-form-item {
+    margin-bottom: .4rem;
+  }
+  .ant-form-item-label {
+    padding-bottom: 8px;
+  }
+  .ant-form-item {
+    position: relative;
+  }
+  .confirm_btn_con{
+    & {
+    }
+    .ant-btn-primary {
+      width: 5.42rem;
+      height: .92rem;
+      border-radius: .92rem;
+      box-sizing: border-box;
+      background: none;
+      background-image: linear-gradient(to bottom, #00c3ff , #0092ff);
+      font-size: 15px;
+      margin-bottom: .25rem;
+      transition: none;
+    }
+  }
+  .confirm_psw {
+    margin-bottom: 1.04rem;
+  }
+  .to_login {
+    &{
+      text-align: center;
+      vertical-align: middle;
+    }
+    div{
+      display: inline;
+      font-size: 14px;
+    }
+    span {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0087ff;
+    }
+  }
+}
