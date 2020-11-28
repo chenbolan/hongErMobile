@@ -10,7 +10,6 @@ import ja_JP from './translation/ja_JP';
 import ru_RU from './translation/ru_RU';
 import Cookies from 'js-cookie';
 import { connect } from "react-redux";
-import { message } from 'antd';
 import { IMState, getAppStore, setHeader } from './redux';
 const messages: Messages = {
   "en_US": en_US,
@@ -37,12 +36,6 @@ export class _App extends BaseWidget<AllWidgetProps<{}> & ExtProps, State>{
       locale: this.getLocaleLaunguage(),
     }
   }
-  // static mapExtraStateProps(state: IMState){
-  //   return {
-  //     isShowSlideBar: state.isShowSlideBar,
-  //     isShowHeader: state.isShowHeader
-  //   }
-  // }
 
   componentDidUpdate(preProps: any){
     console.log(preProps)
@@ -111,7 +104,6 @@ export class _App extends BaseWidget<AllWidgetProps<{}> & ExtProps, State>{
       <div className="App">
         {this.props?.isShowSlideBar && <SlideBar messages={messages} />}
         {this.props?.isShowHeader && <HongErHeader/>}
-        {/* <HongErHeader/> */}
         <Switch>
           <Route exact path='/' component={HomePage}/>
           <Route path='/Detail' component={Detail}/>

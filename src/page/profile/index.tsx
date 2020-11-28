@@ -2,7 +2,6 @@ import * as React from "react";
 import {requestUrl, request}  from '../../request';
 import {getAppStore, setHeader, IMState} from '../../redux';
 import {BaseWidget, AllWidgetProps} from '../../HE-ui'
-import {connect} from 'react-redux'
 require('./profile.scss')
 
 interface Props {
@@ -24,7 +23,10 @@ export default class Profile extends BaseWidget<Props & AllWidgetProps<{}> & Ext
   }
 
   showHeader = () => {
-    getAppStore().dispatch(setHeader(true, '1'))
+    setTimeout(() => {
+      const exhibitionDesc = localStorage.getItem('exhibitionDesc') as  string;
+      getAppStore().dispatch(setHeader(true, exhibitionDesc))
+    })
   }
 
   goBack = () => {

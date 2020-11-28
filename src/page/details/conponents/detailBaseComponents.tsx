@@ -62,9 +62,11 @@ export class DetailBase extends React.Component<Props, State> {
   }
 
   componentDidMount(){
-    this.checkIsLogin().then(() => {
+    if(!!Cookies.get('userName')){
       this.getExhibitorId();
-    })
+    }else {
+      window.location.hash = '/'
+    }
   }
 
   componentDidUpdate(preProps: Props, state: any){
@@ -72,30 +74,6 @@ export class DetailBase extends React.Component<Props, State> {
       this.getExhibitorId();
     }
   }
-
-  checkIsLogin = ():Promise<boolean> => {
-    const {exhibitorId, layoutId} = this.state;
-    const isDisplay = this.getQueryString('isDisplay') || "false";
-    console.info("isDisplay:" + isDisplay);
-    if(!!Cookies.get('userName')){
-
-      return Promise.resolve(true)
-
-    }else if(isDisplay == 'true'){
-      this.setState({
-        showChatButton: "none",
-        isDisplayBoolean: true,
-        ischatDisplayBoolean: false,
-
-      });
-      return Promise.resolve(true)
-    }else{
-      const showLogin = this?.props?.showLogin;
-      showLogin && showLogin();
-      return Promise.reject(false)
-    }
-  }
-
 
   getClaasify = () => {
     const {exhibitorId, layoutId} = this.state;
@@ -198,11 +176,17 @@ export class DetailBase extends React.Component<Props, State> {
       this.saveCustomerLog();
       this.linkCustomService();
       var host = "https://" + window.location.host;
-      const href  = host + "/vm/pages/front/im/mainNew.html?exhibitorId=" +  exhibitorId;
+      // const href  = host + "/vm/pages/front/im/mainNew.html?exhibitorId=" +  exhibitorId;
+      const href  = `${host}/chat/front/im/mainNew.html?exhibitorId=${exhibitorId}`;
       this.setState({
         chatUrl: href,
       })
     });
+  }
+
+  concatUs = () => {
+    const {chatUrl} = this.state;
+    window.location.href= chatUrl
   }
 
   getQueryString(key: string): string {

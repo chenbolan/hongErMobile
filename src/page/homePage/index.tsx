@@ -41,6 +41,7 @@ export default class HomePage extends BaseWidget<AllWidgetProps<{}> & Props, Sta
         $("#zhanhuiLogo").attr("src",upLoadShowUrl + data.data.logo);
         $("#pdfUrl").val(upLoadShowUrl + data.data.pdfUrl);
         var dataStr = JSON.parse(data.data.mapJson);
+        dataStr.levels[0].map = 'https://demo.fairsroom.com/download/20200812153814/svg/G-plas.svg'
         const windows:any = window;
         windows?.init(dataStr);
         this.setState({

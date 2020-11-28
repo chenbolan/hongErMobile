@@ -1,0 +1,102 @@
+.mobile_header_live {
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  width: 100%;
+  background-color: #2c4b5e;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+.mobile_header_live span {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-left: 2px solid #fff;
+  border-top: 2px solid #fff;
+  left: 12px;
+  top: 50%;
+  transform-origin: center center;
+  transform: translateY(-50%) rotate(-45deg);
+}
+.chat_con {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 349px;
+}
+.m-room .chat-box {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  padding: 0 23px 16px;
+  box-sizing: border-box;
+}
+.chat-content-mobile {
+  flex: 1;
+  flex-grow: 1;
+}
+.sendBtn_mobile {
+  position: relative;
+  z-index: 100;
+}
+.m-room-mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 349px;
+  height: auto;
+}
+.mobile-m-status {
+  line-height: 40px;
+  height: auto;
+}
+.sendBtn_mobile {
+  display: flex;
+  background: #f7f7f7;
+  height: 57px;
+  border-radius: 57px;
+  vertical-align: middle;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 19px;
+}
+.sendBtn_mobile textarea {
+  border: none;
+  background: none;
+  flex: 1;
+  flex-grow: 1;
+  height: 100%;
+  line-height: 57px;
+  font-size: 16px;
+  color: #aeb0b3;
+}
+.sendBtn_mobile textarea::placeholder{
+  font-size: 16px;
+  color: #aeb0b3;
+}
+.m-room .sendBtn_mobile .emoji {
+  margin-left: 0;
+  margin-right: 19px;
+  width: 32px;
+  height: 32px;
+  background: url('../images/emoji.png') no-repeat center center;
+  background-size: cover;
+}
+.m-room .sendBtn_mobile #sentText {
+  height: 100%;
+  display: block;
+  background-color: none;
+  background: url('../images/kboard1.png') no-repeat center center;
+  background-size: contain;
+  width: 33px;
+  padding: 0;
+}

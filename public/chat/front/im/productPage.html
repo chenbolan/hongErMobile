@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>chat</title>
+	<script src="dist/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="../productDetail/css/bootstrap.min.css">
+	<script type="text/javascript" src="chatroom/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div style="font-family: PingFangSC-Regular;
+					font-size: 20px;overflow-y: scroll;
+					color: #404040;
+					line-height: 50px;" id="chatButton" data-toggle="modal" data-target="#myModal">
+		设置公告
+	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body" style="width: 600px;height: 410px;margin:0;padding:0;">
+					<iframe scrolling="no" style="width:600px;height: 410px;"  frameborder="no" border="0" marginwidth="0" marginheight="0" src="http://localhost:8080/vm/pages/front/im/customserviceMainNew.html"></iframe>
+				</div>
+
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+</body>
+</html>

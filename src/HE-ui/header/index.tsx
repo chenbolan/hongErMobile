@@ -20,12 +20,6 @@ export class _Header extends BaseWidget<Props & AllWidgetProps<{}> & ExtProps, S
 
   componentDidMount(){}
 
-  static mapExtraStateProps(state: IMState){
-    return {
-      title: state.title
-    }
-  }
-
   goBack = () => {
     window.history.go(-1);
   }

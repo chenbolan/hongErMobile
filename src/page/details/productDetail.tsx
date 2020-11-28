@@ -33,7 +33,7 @@ export class _HomePage extends DetailBase{
         <div className="detail_menu_con">
           <div className="classify d-flex">
             <div className="sort_name">{descriptionData?.[0]?.bigCategory}</div>
-            <div className="contcat_us">
+            <div className="contcat_us" onClick={this.concatUs}>
               <div></div>
               {messages?.contactUs}
             </div>

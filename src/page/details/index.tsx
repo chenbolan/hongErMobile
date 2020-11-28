@@ -35,7 +35,7 @@ export class _HomePage extends DetailBase{
               <div>{messages?.sort}</div>
               <span className="underline"></span>
             </li>
-            <li className="concat_us">
+            <li className="concat_us" onClick={this.concatUs}>
               <div className="icon_icon"></div>
               <div>{messages?.contactUs}</div>
             </li>
